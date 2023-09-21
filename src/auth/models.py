@@ -1,7 +1,7 @@
 from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable
 from sqlalchemy import ForeignKey, JSON
 from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
-from src.auth.mixin import MixinCRUD
+from src.mixin import MixinCRUD
 
 
 class AuthBase(DeclarativeBase):
