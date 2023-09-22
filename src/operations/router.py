@@ -13,15 +13,29 @@ router = APIRouter(
 
 @router.get("/")
 async def get_specific_operations(operation_type: str, session: AsyncSession = Depends(get_async_session)):
-    query = select(Operation).where(Operation.type == operation_type)
-    print(query)
-    result = await session.execute(query)
-    return result.mappings().all()
+    try:
+        query = select(Operation).where(Operation.type == operation_type)
+        print(query)
+        result = await session.execute(query)
+        return result.mappings().all()
+    except:
+        return {
+            "status": "error",
+            "data": None,
+            "details": None
+        }
 
 
 @router.post("/")
 async def add_specific_operations(new_operation: OperationCreate, session: AsyncSession = Depends(get_async_session)):
-    stmt = insert(Operation).values(**new_operation.model_dump())
-    await session.execute(stmt)
-    await session.commit()
-    return {"status": "success"}
+    try:
+        stmt = insert(Operation).values(**new_operation.model_dump())
+        await session.execute(stmt)
+        await session.commit()
+        return {"status": "success"}
+    except:
+        return {
+            "status": "error",
+            "data": None,
+            "details": None
+        }
