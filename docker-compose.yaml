@@ -1,0 +1,30 @@
+version: "3.11"
+services:
+  db:
+    image: postgres:15.4
+    container_name: postgres_container
+    command: -p 6000
+    expose:
+      - 6000
+    env_file:
+      - .env-non-dev
+
+  redis:
+    image: redis:7.0.3
+    container_name: redis_container
+    command: --port 6001
+    expose:
+      - 6001
+
+  app:
+    build:
+      context: .
+    env_file:
+      - .env-non-dev
+    container_name: fastapi_app
+    command: ["/fastapi_app/docker/app.sh"]
+    ports:
+      - 6002:8000
+    depends_on:
+      - db
+      - redis
