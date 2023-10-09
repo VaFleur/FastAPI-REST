@@ -7,6 +7,8 @@ import sys
 from src.config import DB_HOST, DB_PORT, DB_USER, DB_NAME, DB_PASS
 from src.auth.models import AuthBase
 from src.operations.models import OperationBase
+from src.models.post_model import PostBase
+from src.models.comment_model import CommentBase
 
 sys.path.append(os.path.join(sys.path[0], 'src'))
 
