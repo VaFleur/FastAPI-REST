@@ -11,6 +11,6 @@ class CommentSchema(BaseModel):
         from_attributes = True
 
 
-class CommentAdd(BaseModel):
+class CommentSchemaAdd(BaseModel):
     body: Text
     post_id: int

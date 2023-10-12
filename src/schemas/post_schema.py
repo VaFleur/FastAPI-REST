@@ -11,6 +11,6 @@ class PostSchema(BaseModel):
         from_attributes = True
 
 
-class PostAdd(BaseModel):
+class PostSchemaAdd(BaseModel):
     header: str
     body: Text
