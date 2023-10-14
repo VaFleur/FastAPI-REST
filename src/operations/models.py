@@ -1,5 +1,5 @@
 from sqlalchemy.orm import mapped_column, Mapped, DeclarativeBase
-from src.mixin import MixinCRUD
+from src.database.mixin import MixinCRUD
 
 
 class OperationBase(DeclarativeBase):

@@ -2,7 +2,7 @@ import time
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select, insert
 from sqlalchemy.ext.asyncio import AsyncSession
-from src.database import get_async_session
+from src.database.database import get_async_session
 from src.operations.models import Operation
 from src.operations.schemas import OperationCreate
 from fastapi_cache.decorator import cache

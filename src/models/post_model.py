@@ -1,9 +1,9 @@
 from sqlalchemy.orm import mapped_column, Mapped, relationship
-from src.mixin import MixinCRUD
+from src.database.mixin import MixinCRUD
 from typing import Text, List
 from src.models.comment_model import Comment
 from src.schemas.post_schema import PostSchema
-from src.database import Base
+from src.database.database import Base
 
 
 class Post(Base, MixinCRUD):

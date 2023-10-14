@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from sqlalchemy import insert, select
-from src.database import async_session_maker
+from src.database.database import async_session_maker
 
 
 class AbstractRepository(ABC):
