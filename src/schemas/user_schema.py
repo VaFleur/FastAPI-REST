@@ -2,7 +2,7 @@ from typing import Optional
 from fastapi_users import schemas
 
 
-class UserRead(schemas.BaseUser[int]):
+class UserSchemaRead(schemas.BaseUser[int]):
     id: int
     username: str
     role_id: int
@@ -15,7 +15,7 @@ class UserRead(schemas.BaseUser[int]):
         from_attributes = True
 
 
-class UserCreate(schemas.BaseUserCreate):
+class UserSchemaCreate(schemas.BaseUserCreate):
     username: str
     email: str
     password: str
@@ -25,7 +25,7 @@ class UserCreate(schemas.BaseUserCreate):
     is_verified: Optional[bool] = False
 
 
-class UserUpdate(schemas.BaseUserUpdate):
+class UserSchemaUpdate(schemas.BaseUserUpdate):
     username: str
     email: str
     password: str

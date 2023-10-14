@@ -4,13 +4,13 @@ from src.routes.dependencies import comment_service
 from src.schemas.comment_schema import CommentSchemaAdd
 from src.services.comment_service import CommentService
 
-router = APIRouter(
+comment_router = APIRouter(
     prefix="/comments",
     tags=["Comments"],
 )
 
 
-@router.post("")
+@comment_router.post("")
 async def add_comment(schema: CommentSchemaAdd,
                       comments_service: Annotated[CommentService, Depends(comment_service)],
                       ):
@@ -18,7 +18,7 @@ async def add_comment(schema: CommentSchemaAdd,
     return {"comment_id": comment_id}
 
 
-@router.get("")
+@comment_router.get("")
 async def get_comments(
         comments_service: Annotated[CommentService, Depends(comment_service)],
 ):

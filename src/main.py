@@ -1,14 +1,14 @@
+import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.auth.base_config import auth_backend, fastapi_users
-from src.auth.schemas import UserRead, UserCreate
+from src.auth.auth_config import auth_backend, fastapi_users
+from src.schemas.user_schema import UserSchemaRead, UserSchemaCreate
 from src.config import REDIS_HOST, REDIS_PORT
-from src.operations.router import router as router_operation
 from redis import asyncio as aioredis
 from fastapi_cache import FastAPICache
 from fastapi_cache.backends.redis import RedisBackend
 
-app = FastAPI(title="Trading App")
+app = FastAPI(title="Blog API")
 
 app.include_router(
     fastapi_users.get_auth_router(auth_backend),
@@ -17,12 +17,10 @@ app.include_router(
 )
 
 app.include_router(
-    fastapi_users.get_register_router(UserRead, UserCreate),
+    fastapi_users.get_register_router(UserSchemaRead, UserSchemaCreate),
     prefix="/auth",
     tags=["Auth"],
 )
-
-app.include_router(router_operation)
 
 origins = [
     "http://localhost:8000",
@@ -42,3 +40,8 @@ app.add_middleware(
 async def startup():
     redis = aioredis.from_url(f"redis://{REDIS_HOST}:{REDIS_PORT}", encoding="utf8", decode_responses=True)
     FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
+
+if __name__ == "__main__":
+    uvicorn.run(app="main:app", reload=True)
+
+# TODO переработать в соответствии со 2 видосом

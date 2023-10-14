@@ -2,7 +2,7 @@ from typing import Text
 from pydantic import BaseModel
 
 
-class PostSchema(BaseModel):
+class PostSchemaRead(BaseModel):
     id: int
     header: str
     body: Text
