@@ -26,3 +26,11 @@ class PostHistorySchemaRead(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class PostHistorySchemaAdd(BaseModel):
+    post_id: int
+    previous_header: int
+    previous_body: int
+    new_header: int
+    new_body: int
