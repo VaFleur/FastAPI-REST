@@ -1,4 +1,4 @@
-# TODO fill with code
+# TODO переработать авторизацию пользователей без библоитеки фастапи юзерс
 # from fastapi import APIRouter
 # from src.auth.auth_config import fastapi_users, auth_backend
 # from src.schemas.user_schema import UserRead, UserCreate

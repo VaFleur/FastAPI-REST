@@ -2,7 +2,7 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from src.auth.auth_config import auth_backend, fastapi_users
-from src.schemas.user_schema import UserSchemaRead, UserSchemaCreate
+from src.schemas.user_schema import UserSchema, UserSchemaCreate
 from src.config import REDIS_HOST, REDIS_PORT
 from redis import asyncio as aioredis
 from fastapi_cache import FastAPICache
@@ -17,7 +17,7 @@ app.include_router(
 )
 
 app.include_router(
-    fastapi_users.get_register_router(UserSchemaRead, UserSchemaCreate),
+    fastapi_users.get_register_router(UserSchema, UserSchemaCreate),
     prefix="/auth",
     tags=["Auth"],
 )

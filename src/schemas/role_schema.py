@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 
-class RoleSchemaRead(BaseModel):
+class RoleSchema(BaseModel):
     id: int
     name: str
     permissions: dict
@@ -11,5 +11,10 @@ class RoleSchemaRead(BaseModel):
 
 
 class RoleSchemaAdd(BaseModel):
+    name: str
+    permissions: dict
+
+
+class RoleSchemaEdit(BaseModel):
     name: str
     permissions: dict

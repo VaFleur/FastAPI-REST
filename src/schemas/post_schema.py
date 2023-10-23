@@ -2,7 +2,7 @@ from typing import Text
 from pydantic import BaseModel
 
 
-class PostSchemaRead(BaseModel):
+class PostSchema(BaseModel):
     id: int
     header: str
     body: Text
@@ -12,6 +12,11 @@ class PostSchemaRead(BaseModel):
 
 
 class PostSchemaAdd(BaseModel):
+    header: str
+    body: Text
+
+
+class PostSchemaEdit(BaseModel):
     header: str
     body: Text
 

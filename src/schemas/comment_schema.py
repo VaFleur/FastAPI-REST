@@ -2,7 +2,7 @@ from typing import Text
 from pydantic import BaseModel
 
 
-class CommentSchemaRead(BaseModel):
+class CommentSchema(BaseModel):
     id: int
     body: Text
     post_id: int
@@ -16,7 +16,11 @@ class CommentSchemaAdd(BaseModel):
     post_id: int
 
 
-class CommentHistorySchemaRead(BaseModel):
+class CommentSchemaEdit(BaseModel):
+    body: Text
+
+
+class CommentHistorySchema(BaseModel):
     id: int
     previous_body: Text
     new_body: Text
