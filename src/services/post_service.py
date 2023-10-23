@@ -41,5 +41,3 @@ class PostService:
         async with uow:
             history = uow.post_history.find_all()
             return history
-
-
