@@ -21,6 +21,10 @@ class AbstractRepository(ABC):
     async def find_one(self, *args):
         raise NotImplementedError
 
+    @abstractmethod
+    async def delete_one(self, *args):
+        raise NotImplementedError
+
 
 class SQLAlchemyRepository(AbstractRepository):
     model = None
@@ -49,3 +53,6 @@ class SQLAlchemyRepository(AbstractRepository):
         res = await self.session.execute(stmt)
         res = res.scalar_one().to_read_model()
         return res  # Проверить работу
+
+    async def delete_one(self):
+        await super().delete_one()

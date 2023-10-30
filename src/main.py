@@ -44,4 +44,4 @@ async def startup():
 if __name__ == "__main__":
     uvicorn.run(app="main:app", reload=True)
 
-# TODO переработать в соответствии со 2 видосом
+# TODO добавить собственную аутентификацию пользователей через JWT токен

@@ -18,7 +18,7 @@ class CommentService:
             return comments
 
     @staticmethod
-    async def edit_comments(uow: IUnitOfWork, comment_id: int, data: CommentSchemaEdit):
+    async def edit_comment(uow: IUnitOfWork, comment_id: int, data: CommentSchemaEdit):
         data_dict = data.model_dump()
         async with uow:
             await uow.comments.edit_one(comment_id, data_dict)
@@ -33,6 +33,11 @@ class CommentService:
             comment_history_log = comment_history_log.model_dump()
             await uow.comment_history.add_one(comment_history_log)
             await uow.commit()
+
+    @staticmethod
+    async def delete_comment(uow: IUnitOfWork):
+        async with uow:
+            await uow.comments.delete_one()
 
     @staticmethod
     async def get_task_history(uow: IUnitOfWork):

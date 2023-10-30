@@ -21,7 +21,7 @@ class PostSchemaEdit(BaseModel):
     body: Text
 
 
-class PostHistorySchemaRead(BaseModel):
+class PostHistorySchema(BaseModel):
     id: int
     post_id: int
     previous_header: int
