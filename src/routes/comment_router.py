@@ -40,7 +40,7 @@ async def add_comment(uow: UOWDep, data: CommentSchemaAdd):
 async def edit_comment(uow: UOWDep, comment_id: int, data: CommentSchemaEdit):
     try:
         await CommentService.edit_comment(uow, comment_id, data)
-        return {"Success": f"Success: comment id{comment_id} has been edited"}
+        return {"Status": f"Success: comment id{comment_id} has been edited"}
     except Exception:
         raise HTTPException(status_code=500, detail={"Status": "Error"})
 
@@ -49,6 +49,6 @@ async def edit_comment(uow: UOWDep, comment_id: int, data: CommentSchemaEdit):
 async def delete_comment(uow: UOWDep):
     try:
         await CommentService.delete_comment(uow)
-        return {"Error": "Delete method is not implemented yet"}
+        return {"Status": "Error: delete method is not implemented yet"}
     except Exception:
         raise HTTPException(status_code=500, detail={"Status": "Error"})

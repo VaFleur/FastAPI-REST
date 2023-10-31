@@ -40,7 +40,7 @@ async def add_post(uow: UOWDep, data: PostSchemaAdd):
 async def edit_post(uow: UOWDep, post_id: int, data: PostSchemaEdit):
     try:
         await PostService.edit_post(uow, post_id, data)
-        return {"Success": f"Success: post id{post_id} has been edited"}
+        return {"Status": f"Success: post id{post_id} has been edited"}
     except Exception:
         raise HTTPException(status_code=500, detail={"Status": "Error"})
 
@@ -49,6 +49,6 @@ async def edit_post(uow: UOWDep, post_id: int, data: PostSchemaEdit):
 async def delete_post(uow: UOWDep):
     try:
         await PostService.delete_one(uow)
-        return {"Error": "Delete method is not implemented yet"}
+        return {"Status": "Error: delete method is not implemented yet"}
     except Exception:
         raise HTTPException(status_code=500, detail={"Status": "Error"})
