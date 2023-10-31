@@ -4,6 +4,12 @@ from src.utils.unit_of_work import IUnitOfWork
 
 class RoleService:
     @staticmethod
+    async def get_roles(uow: IUnitOfWork):
+        async with uow:
+            roles = uow.roles.find_all()
+            return roles
+
+    @staticmethod
     async def add_role(uow: IUnitOfWork, data: RoleSchemaAdd):
         data_dict = data.model_dump()
         async with uow:
@@ -12,20 +18,14 @@ class RoleService:
             return role_id
 
     @staticmethod
-    async def get_roles(uow: IUnitOfWork):
-        async with uow:
-            roles = uow.roles.find_all()
-            return roles
-
-    @staticmethod
-    async def delete_role(uow: IUnitOfWork):
-        async with uow:
-            await uow.roles.delete_one()
-
-    @staticmethod
     async def edit_role(uow: IUnitOfWork, role_id: int, data: RoleSchemaEdit):
         data_dict = data.model_dump()
         async with uow:
             role_id = uow.roles.edit_one(role_id, data_dict)
             await uow.commit()
             return role_id
+
+    @staticmethod
+    async def delete_role(uow: IUnitOfWork):
+        async with uow:
+            await uow.roles.delete_one()
