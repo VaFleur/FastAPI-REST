@@ -31,7 +31,7 @@ async def get_comment_history(uow: UOWDep):
 async def add_comment(uow: UOWDep, data: CommentSchemaAdd):
     try:
         comment_id = await CommentService.add_comment(uow, data)
-        return {"Status": f"Comment id{comment_id} has been added"}
+        return {"Status": f"Success: comment id{comment_id} has been added"}
     except Exception:
         raise HTTPException(status_code=500, detail={"Status": "Error"})
 
@@ -40,7 +40,7 @@ async def add_comment(uow: UOWDep, data: CommentSchemaAdd):
 async def edit_comment(uow: UOWDep, comment_id: int, data: CommentSchemaEdit):
     try:
         await CommentService.edit_comment(uow, comment_id, data)
-        return {"Success": f"Comment id{comment_id} has been edited"}
+        return {"Success": f"Success: comment id{comment_id} has been edited"}
     except Exception:
         raise HTTPException(status_code=500, detail={"Status": "Error"})
 
