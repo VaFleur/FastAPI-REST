@@ -1,11 +1,15 @@
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 from src.database.mixin import MixinCRUD
-from typing import Text, List
-from src.models.comment_model import Comment
+from typing import Text, List, TYPE_CHECKING
+# from src.models.comment_model import Comment
 from src.schemas.post_schema import PostSchema
 from src.schemas.post_schema import PostHistorySchema
 from src.database.database import Base
+
+
+if TYPE_CHECKING:
+    from src.models.comment_model import Comment
 
 
 class Post(Base, MixinCRUD):
