@@ -24,7 +24,7 @@ class Post(Base, MixinCRUD):
         )
 
 
-class PostHistory(Base):  # TODO проверить работу
+class PostHistory(Base):
     __tablename__ = "post_history_table"
 
     id: Mapped[int] = mapped_column(primary_key=True)

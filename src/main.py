@@ -1,8 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.auth.auth_config import auth_backend, fastapi_users
-from src.schemas.user_schema import UserSchema, UserSchemaCreate
+from src.routes.router import all_routers
 from src.config import REDIS_HOST, REDIS_PORT
 from redis import asyncio as aioredis
 from fastapi_cache import FastAPICache
@@ -10,17 +9,8 @@ from fastapi_cache.backends.redis import RedisBackend
 
 app = FastAPI(title="Blog API")
 
-app.include_router(
-    fastapi_users.get_auth_router(auth_backend),
-    prefix="/auth",
-    tags=["Auth"],
-)
-
-app.include_router(
-    fastapi_users.get_register_router(UserSchema, UserSchemaCreate),
-    prefix="/auth",
-    tags=["Auth"],
-)
+for router in all_routers:
+    app.include_router(router)
 
 origins = [
     "http://localhost:8000",
@@ -43,5 +33,3 @@ async def startup():
 
 if __name__ == "__main__":
     uvicorn.run(app="main:app", reload=True)
-
-# TODO добавить собственную аутентификацию пользователей через JWT токен

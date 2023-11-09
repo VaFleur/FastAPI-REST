@@ -23,7 +23,7 @@ class Comment(Base, MixinCRUD):
         )
 
 
-class CommentHistory(Base):  # TODO проверить работу
+class CommentHistory(Base):
     __tablename__ = "comment_history_table"
 
     id: Mapped[int] = mapped_column(primary_key=True)
