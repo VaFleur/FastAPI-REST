@@ -1,35 +1,26 @@
-from typing import Optional
-from fastapi_users import schemas
+from pydantic import BaseModel
 
 
-class UserSchema(schemas.BaseUser[int]):
+class UserSchema(BaseModel):
     id: int
     username: str
-    role_id: int
+    password: str
+    role_id: int = 0
     email: str
-    is_active: bool = True
-    is_superuser: bool = False
-    is_verified: bool = False
 
     class Config:
         from_attributes = True
 
 
-class UserSchemaCreate(schemas.BaseUserCreate):
+class UserSchemaAdd(BaseModel):
     username: str
     email: str
     password: str
     role_id: int
-    is_active: Optional[bool] = True
-    is_superuser: Optional[bool] = False
-    is_verified: Optional[bool] = False
 
 
-class UserSchemaEdit(schemas.BaseUserUpdate):
+class UserSchemaEdit(BaseModel):
     username: str
     email: str
     password: str
     role_id: int
-    is_active: Optional[bool] = True
-    is_superuser: Optional[bool] = False
-    is_verified: Optional[bool] = False

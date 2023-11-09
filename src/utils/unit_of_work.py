@@ -4,11 +4,13 @@ from src.models.comment_model import Comment, CommentHistory
 from src.models.post_model import Post, PostHistory
 from src.models.role_model import Role
 from src.database.database import async_session_maker
+from src.models.user_model import User
 from src.repositories.comment_history_repository import CommentHistoryRepository
 from src.repositories.comment_repository import CommentRepository
 from src.repositories.post_history_repository import PostHistoryRepository
 from src.repositories.post_repository import PostRepository
 from src.repositories.role_repository import RoleRepository
+from src.repositories.user_repository import UserRepository
 
 
 class IUnitOfWork(ABC):
@@ -17,6 +19,7 @@ class IUnitOfWork(ABC):
     comments = Type[Comment]
     comment_history = Type[CommentHistory]
     roles = Type[Role]
+    users = Type[User]
 
     @abstractmethod
     def __init__(self):
@@ -51,6 +54,7 @@ class UnitOfWork(IUnitOfWork):
         self.post_history = PostHistoryRepository(self.session)
         self.comment_history = CommentHistoryRepository(self.session)
         self.roles = RoleRepository(self.session)
+        self.users = UserRepository(self.session)
 
     async def __aexit__(self, *args):
         await self.rollback()
