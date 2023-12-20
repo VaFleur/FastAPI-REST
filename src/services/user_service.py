@@ -1,3 +1,6 @@
+from fastapi import HTTPException
+
+from src.auth.auth_jwt import pwd_context, create_jwt_token
 from src.schemas.user_schema import UserSchemaAdd, UserSchemaEdit
 from src.utils.unit_of_work import IUnitOfWork
 
@@ -29,3 +32,28 @@ class UserService:
     async def delete_user(uow: IUnitOfWork):
         async with uow:
             await uow.posts.delete_one()
+
+    @staticmethod
+    async def register_user(uow: IUnitOfWork, data: dict) -> dict:
+        data["password"] = pwd_context.hash(data["password"])
+        async with uow:
+            await uow.posts.add_one(data)
+            await uow.commit()
+            return data
+
+    @staticmethod
+    async def authenticate_user(uow: IUnitOfWork, data: dict) -> dict:  # Подкорректировать, возможна ошибка
+        async with uow:
+            user = uow.users.find_one(data["username"])
+
+        if not user:
+            raise HTTPException(status_code=400, detail="Incorrect username or password")
+
+        is_password_correct = pwd_context.verify(data["password"], user["password"])
+
+        if not is_password_correct:
+            raise HTTPException(status_code=400, detail="Incorrect username or password")
+        jwt_token = create_jwt_token({"sub": user.username})
+        return {"access_token": jwt_token, "token_type": "bearer"}
+
+    # TODO доработать
