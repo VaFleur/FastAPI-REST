@@ -6,9 +6,19 @@ RUN mkdir /fastapi_app
 
 WORKDIR /fastapi_app
 
-COPY requirements.txt .
+#Install requirements via pip
+#COPY requirements.txt .
 
-RUN pip install -r requirements.txt
+#RUN pip install -r requirements.txt
+#End of pip usage
+
+#Install requirements via pipenv
+COPY Pipfile Pipfile.lock ./
+
+RUN python -m pip install --upgrade pip
+
+RUN pip install pipenv && pipenv install
+#End of pipenv usage
 
 COPY . .
 
