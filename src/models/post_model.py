@@ -16,8 +16,8 @@ class Post(Base, MixinCRUD):
     __tablename__ = "post_table"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    header: Mapped[str] = mapped_column(nullable=False)
-    body: Mapped[Text] = mapped_column(nullable=False)
+    header: Mapped[str] = mapped_column(nullable=False, unique=True)
+    body: Mapped[Text] = mapped_column(nullable=False, unique=True)
     comments: Mapped[List["Comment"]] = relationship(back_populates="post")
 
     def to_read_schema(self) -> PostSchema:
@@ -36,7 +36,7 @@ class PostHistory(Base):
     previous_header: Mapped[str] = mapped_column(ForeignKey("post_table.header"))
     previous_body: Mapped[Text] = mapped_column(ForeignKey("post_table.body"))
     new_header: Mapped[str] = mapped_column(ForeignKey("post_table.header"))
-    new_body: Mapped[Text] = mapped_column(ForeignKey("post_table.header"))
+    new_body: Mapped[Text] = mapped_column(ForeignKey("post_table.body"))
 
     def to_read_model(self) -> PostHistorySchema:
         return PostHistorySchema(
