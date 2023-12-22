@@ -20,7 +20,7 @@ class Post(Base, MixinCRUD):
     body: Mapped[Text] = mapped_column(nullable=False, unique=True)
     comments: Mapped[List["Comment"]] = relationship(back_populates="post")
 
-    def to_read_schema(self) -> PostSchema:
+    def to_read_model(self) -> PostSchema:
         return PostSchema(
             id=self.id,
             header=self.header,

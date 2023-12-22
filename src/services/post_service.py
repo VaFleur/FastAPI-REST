@@ -12,7 +12,7 @@ class PostService:
     @staticmethod
     async def get_post_history(uow: IUnitOfWork):
         async with uow:
-            history = uow.post_history.find_all()
+            history = await uow.post_history.find_all()
             return history
 
     @staticmethod

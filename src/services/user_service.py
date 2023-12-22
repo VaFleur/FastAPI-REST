@@ -24,7 +24,7 @@ class UserService:
     async def edit_user(uow: IUnitOfWork, user_id: int, data: UserSchemaEdit):
         data_dict = data.model_dump()
         async with uow:
-            user_id = uow.users.update_one(user_id, data_dict)
+            user_id = await uow.users.update_one(user_id, data_dict)
             await uow.commit()
             return user_id
 
@@ -44,7 +44,7 @@ class UserService:
     @staticmethod
     async def authenticate_user(uow: IUnitOfWork, data: dict) -> dict:  # Подкорректировать, возможна ошибка
         async with uow:
-            user = uow.users.find_one(data["username"])
+            user = await uow.users.find_one(data["username"])
 
         if not user:
             raise HTTPException(status_code=400, detail="Incorrect username or password")

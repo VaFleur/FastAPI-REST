@@ -1,8 +1,8 @@
 """Test
 
-Revision ID: ee8c2299c56d
+Revision ID: 5456ef892b0c
 Revises: 
-Create Date: 2023-12-22 11:37:49.245242
+Create Date: 2023-12-22 12:49:53.340809
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'ee8c2299c56d'
+revision: str = '5456ef892b0c'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -26,7 +26,7 @@ def upgrade() -> None:
     sa.Column('body', sa.String(), nullable=False),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('created_by', sa.Integer(), nullable=True),
-    sa.Column('updated_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.Column('updated_by', sa.Integer(), nullable=True),
     sa.Column('deleted_at', sa.DateTime(), nullable=True),
     sa.Column('deleted_by', sa.Integer(), nullable=True),
@@ -43,7 +43,7 @@ def upgrade() -> None:
     sa.Column('permissions', sa.JSON(), nullable=True),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('created_by', sa.Integer(), nullable=True),
-    sa.Column('updated_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.Column('updated_by', sa.Integer(), nullable=True),
     sa.Column('deleted_at', sa.DateTime(), nullable=True),
     sa.Column('deleted_by', sa.Integer(), nullable=True),
@@ -60,7 +60,7 @@ def upgrade() -> None:
     sa.Column('password', sa.String(), nullable=False),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('created_by', sa.Integer(), nullable=True),
-    sa.Column('updated_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.Column('updated_by', sa.Integer(), nullable=True),
     sa.Column('deleted_at', sa.DateTime(), nullable=True),
     sa.Column('deleted_by', sa.Integer(), nullable=True),
@@ -76,7 +76,7 @@ def upgrade() -> None:
     sa.Column('post_id', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('created_by', sa.Integer(), nullable=True),
-    sa.Column('updated_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.Column('updated_by', sa.Integer(), nullable=True),
     sa.Column('deleted_at', sa.DateTime(), nullable=True),
     sa.Column('deleted_by', sa.Integer(), nullable=True),

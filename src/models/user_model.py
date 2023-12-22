@@ -14,7 +14,7 @@ class User(Base, MixinCRUD):
     role_id: Mapped[int] = mapped_column(ForeignKey("role_table.id", use_alter=True))
     password: Mapped[str] = mapped_column(nullable=False)
 
-    def to_read_schema(self) -> UserSchema:
+    def to_read_model(self) -> UserSchema:
         return UserSchema(
             id=self.id,
             username=self.username,

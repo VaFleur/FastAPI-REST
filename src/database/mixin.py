@@ -32,7 +32,7 @@ class MixinCRUD:
 
     @declared_attr
     def updated_at(self):
-        return mapped_column(DateTime, nullable=True, server_default=text("now()"))
+        return mapped_column(DateTime, nullable=True, server_default=None)
 
     @declared_attr
     def updated_by(self):

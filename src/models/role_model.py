@@ -12,7 +12,7 @@ class Role(Base, MixinCRUD):
     name: Mapped[str] = mapped_column(nullable=False)
     permissions: Mapped[dict] = mapped_column(type_=JSON, nullable=True)
 
-    def to_read_schema(self) -> RoleSchema:
+    def to_read_model(self) -> RoleSchema:
         return RoleSchema(
             id=self.id,
             name=self.name,
