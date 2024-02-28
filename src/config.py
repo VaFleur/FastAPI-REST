@@ -17,7 +17,6 @@ POSTGRES_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
 SRV_HOST = os.environ.get("SRV_HOST")
 SRV_PORT = os.environ.get("SRV_PORT")
 
-REDIS_HOST = os.environ.get("REDIS_HOST")
-REDIS_PORT = os.environ.get("REDIS_PORT")
-
 SECRET_AUTH = os.environ.get("SECRET_AUTH")
+
+#TODO Убрать лишнее

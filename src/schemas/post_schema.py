@@ -19,23 +19,3 @@ class PostSchemaAdd(BaseModel):
 class PostSchemaEdit(BaseModel):
     header: str
     body: Text
-
-
-class PostHistorySchema(BaseModel):
-    id: int
-    post_id: int
-    previous_header: int
-    previous_body: int
-    new_header: int
-    new_body: int
-
-    class Config:
-        from_attributes = True
-
-
-class PostHistorySchemaAdd(BaseModel):
-    post_id: int
-    previous_header: int
-    previous_body: int
-    new_header: int
-    new_body: int

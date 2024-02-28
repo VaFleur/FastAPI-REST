@@ -1,11 +1,10 @@
 from sqlalchemy import JSON
 from sqlalchemy.orm import Mapped, mapped_column
-from src.database.mixin import MixinCRUD
 from src.database.database import Base
 from src.schemas.role_schema import RoleSchema
 
 
-class Role(Base, MixinCRUD):
+class Role(Base):
     __tablename__ = 'role_table'
 
     id: Mapped[int] = mapped_column(primary_key=True)

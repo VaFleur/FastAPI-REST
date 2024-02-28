@@ -18,15 +18,6 @@ async def get_posts(uow: UOWDep):
         raise HTTPException(status_code=500, detail={"Status": "Error"})
 
 
-@post_router.get("/history")
-async def get_post_history(uow: UOWDep):
-    try:
-        post_history = await PostService.get_post_history(uow)
-        return post_history
-    except Exception:
-        raise HTTPException(status_code=500, detail={"Status": "Error"})
-
-
 @post_router.post("")
 async def add_post(uow: UOWDep, data: PostSchemaAdd):
     try:

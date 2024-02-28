@@ -18,15 +18,6 @@ async def get_comments(uow: UOWDep):
         raise HTTPException(status_code=500, detail={"Status": "Error"})
 
 
-@comment_router.get("/history")
-async def get_comment_history(uow: UOWDep):
-    try:
-        comment_history = await CommentService.get_comment_history(uow)
-        return comment_history
-    except Exception:
-        raise HTTPException(status_code=500, detail={"Status": "Error"})
-
-
 @comment_router.post("")
 async def add_comment(uow: UOWDep, data: CommentSchemaAdd):
     try:

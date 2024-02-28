@@ -42,7 +42,7 @@ class SQLAlchemyRepository(AbstractRepository):
         res = await self.session.execute(stmt)
         return res.scalar_one()
 
-    async def find_all(self):  # Выдаёт ошибку
+    async def find_all(self):
         stmt = select(self.model)
         res = await self.session.execute(stmt)
         res = [row[0].to_read_model() for row in res.all()]

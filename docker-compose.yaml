@@ -9,13 +9,6 @@ services:
     env_file:
       - .env-non-dev
 
-  redis:
-    image: redis:7.0.3
-    container_name: redis_container
-    command: --port 6001
-    expose:
-      - 6001
-
   app:
     build:
       context: .
@@ -27,4 +20,3 @@ services:
       - 6002:8000
     depends_on:
       - db
-      - redis

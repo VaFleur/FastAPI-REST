@@ -8,8 +8,8 @@ from src.config import DB_HOST, DB_PORT, DB_USER, DB_NAME, DB_PASS
 from src.database.database import Base
 from src.models.user_model import User
 from src.models.role_model import Role
-from src.models.post_model import Post, PostHistory
-from src.models.comment_model import Comment, CommentHistory
+from src.models.post_model import Post
+from src.models.comment_model import Comment
 
 
 sys.path.append(os.path.join(sys.path[0], 'src'))
