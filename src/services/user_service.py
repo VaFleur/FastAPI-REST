@@ -1,5 +1,5 @@
 from fastapi import HTTPException
-from src.schemas.user_schema import UserSchemaAdd, UserSchemaEdit
+from src.schemas.user_schema import UserCreate, UserUpdate
 from src.utils.unit_of_work import IUnitOfWork
 
 
@@ -11,7 +11,7 @@ class UserService:
             return users
 
     @staticmethod
-    async def add_user(uow: IUnitOfWork, data: UserSchemaAdd):
+    async def add_user(uow: IUnitOfWork, data: UserCreate):
         data_dict = data.model_dump()
         async with uow:
             user_id = await uow.posts.add_one(data_dict)
@@ -19,7 +19,7 @@ class UserService:
             return user_id
 
     @staticmethod
-    async def edit_user(uow: IUnitOfWork, user_id: int, data: UserSchemaEdit):
+    async def edit_user(uow: IUnitOfWork, user_id: int, data: UserUpdate):
         data_dict = data.model_dump()
         async with uow:
             user_id = await uow.users.update_one(user_id, data_dict)

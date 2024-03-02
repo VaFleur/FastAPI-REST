@@ -3,7 +3,6 @@ from sqlalchemy.orm import mapped_column, Mapped, relationship
 from typing import Text, List, TYPE_CHECKING
 # from src.models.comment_model import Comment
 from src.schemas.post_schema import PostSchema
-from src.schemas.post_schema import PostHistorySchema
 from src.database.database import Base
 
 

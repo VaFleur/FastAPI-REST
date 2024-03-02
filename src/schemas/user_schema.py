@@ -1,10 +1,10 @@
 from pydantic import BaseModel
 
 
-class UserSchema(BaseModel):
+class UserRead(BaseModel):
     id: int
     username: str
-    password: str
+    hashed_password: str
     role_id: int = 0
     email: str
 
@@ -12,15 +12,19 @@ class UserSchema(BaseModel):
         from_attributes = True
 
 
-class UserSchemaAdd(BaseModel):
+class UserCreate(BaseModel):
     username: str
     email: str
-    password: str
+    hashed_password: str
     role_id: int
 
 
-class UserSchemaEdit(BaseModel):
+class UserUpdate(BaseModel):
     username: str
     email: str
-    password: str
+    hashed_password: str
     role_id: int
+
+
+class UserDelete(BaseModel):
+    id: int

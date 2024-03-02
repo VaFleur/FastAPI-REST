@@ -7,13 +7,13 @@ services:
     expose:
       - 6000
     env_file:
-      - .env-non-dev
+      - .env
 
   app:
     build:
       context: .
     env_file:
-      - .env-non-dev
+      - .env
     container_name: fastapi_app
     command: ["/fastapi_app/docker/app.sh"]
     ports:

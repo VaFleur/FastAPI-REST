@@ -2,7 +2,7 @@ from sqlalchemy import ForeignKey
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 from typing import Text, TYPE_CHECKING
 # from src.models.post_model import Post
-from src.schemas.comment_schema import CommentSchema, CommentHistorySchema
+from src.schemas.comment_schema import CommentSchema
 from src.database.database import Base
 
 if TYPE_CHECKING:
